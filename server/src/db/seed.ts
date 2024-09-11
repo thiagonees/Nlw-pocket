@@ -2,19 +2,17 @@ import { client, db } from ".";
 import { goalCompletions, goals } from "./schema";
 import dayjs from 'dayjs';
 
-
-
 async function seed() {
   await db.delete(goalCompletions)
   await db.delete(goals)
 
   const result = await db.insert(goals).values([
-    { title: 'Acordar cedo', diseredWeeklyFrequency: 4 },
-    { title: 'Fazer exercicios', diseredWeeklyFrequency: 3 },
-    { title: 'Meditar', diseredWeeklyFrequency: 1 },
+    { title: 'Acordar cedo', desiredWeeklyFrequency: 4 },
+    { title: 'Fazer exercicios', desiredWeeklyFrequency: 3 },
+    { title: 'Meditar', desiredWeeklyFrequency: 1 },
   ]).returning() 
   //retona os dados inseridos
-
+  
     //startOfWeek comeca na posicao 0, domingo
   const startOfWeek = dayjs().startOf('week')
 
